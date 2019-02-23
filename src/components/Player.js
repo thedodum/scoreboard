@@ -2,6 +2,7 @@ import React from 'react';
 import {Counter} from "./Counter";
 
 export const Player = (props) => {
+  console.log(props);
   return (
     <div className="player">
       <span className="player-name">
@@ -9,7 +10,8 @@ export const Player = (props) => {
         {/*명령형이 아닌 선언문으로 넣기 위해 arrow function 사용*/}
       </span>
       <span className="player-name">{props.name}</span>
-      <Counter score={props.score} />
+      {/*<Counter index={props.index} score={props.score} changeScore={props.changeScore} />*/}
+      <Counter {...props} />
     </div>
   );
 }
