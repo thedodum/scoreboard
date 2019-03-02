@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./components/Header";
 import {Player} from "./components/Player";
+import {AddPlayerForm} from "./components/AddPlayerForm";
 
 class App extends React.Component {
   state = {
@@ -35,6 +36,19 @@ class App extends React.Component {
     this.setState({players}); //players:players 같으면 하나는 생략 가능
   };
 
+  handleAddPlayer = (name) => {
+    this.setState(prevState => {
+      let maxId = 0;
+      this.state.players.forEach(item => item.id > maxId ? (maxId = item.id) : (maxId = maxId));
+
+      return {
+        players: [
+          ...prevState.players, {id: maxId + 1, name, score: 0}
+        ]
+      };
+    });
+  };
+
   render() {
     return (
       <div className="scoreboard">
@@ -49,6 +63,8 @@ class App extends React.Component {
           removePlayer={this.handleRemovePlayer}
           changeScore={this.handleChangeScore}
         />) }
+
+        <AddPlayerForm addPlayer={this.handleAddPlayer} />
       </div>
     );
   }
