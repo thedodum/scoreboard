@@ -19,7 +19,7 @@ class App extends React.Component {
         players: prevState.players.filter(item => item.id !== id)
       }
     })
-  }
+  };
 
   handleChangeScore = (index, delta) => {
     console.log('index: ' + index, 'delta: ' + delta);
@@ -33,12 +33,12 @@ class App extends React.Component {
     });
 
     this.setState({players}); //players:players 같으면 하나는 생략 가능
-  }
+  };
 
   render() {
     return (
       <div className="scoreboard">
-        <Header title="My scoreboard" totalPlayers={this.state.players.length} />
+        <Header title="My scoreboard" totalPlayers={this.state.players} />
 
         { this.state.players.map((play, index) => <Player
           id={play.id}
