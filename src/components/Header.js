@@ -2,11 +2,12 @@ import React from 'react';
 import {Stats} from "./Stats";
 import {Stopwatch} from "./Stopwatch";
 
-export const Header = (props) => {
+export const Header = ({totalPlayers, title}) => {
+  // const {totalPlayers, title} = props;
   return (
     <header>
-      <Stats players={props.totalPlayers} />
-      <h1>{props.title}</h1>
+      <Stats players={totalPlayers} />
+      <h1>{title}</h1>
       {/*<span className="stats">Players: {props.totalPlayers}</span>*/}
       <Stopwatch/>
     </header>
