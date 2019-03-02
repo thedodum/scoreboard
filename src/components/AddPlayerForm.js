@@ -1,11 +1,12 @@
 import React from 'react';
 
 export class AddPlayerForm extends React.Component {
+  // Dom에 접근하기 위한 참조값 (public thrtjd)
+  textInput = React.createRef(); // 1. 만들고
+
   constructor(props) {
     super(props);
-    this.state = {
-      playerName: ''
-    };
+
   };
 
   handleValueChange = (e) => {
@@ -16,7 +17,7 @@ export class AddPlayerForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
-    this.props.addPlayer(this.state.playerName);
+    this.props.addPlayer(this.textInput.current.value); //3. 접근
     this.setState({
       playerName: ''
     });
@@ -25,8 +26,8 @@ export class AddPlayerForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="enter a player's name" value={this.state.playerName}
-        onChange={this.handleValueChange} />
+        {/*//2. 할당*/}
+        <input type="text" placeholder="enter a player's name" ref={this.textInput} />
         <input type="submit" value="Add Player" />
       </form>
     );
