@@ -69,6 +69,6 @@ class App extends React.Component {
     );
   }
 }
-// 20190309 git test
+// 20190309 git test2
 
 export default App;
