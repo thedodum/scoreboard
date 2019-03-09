@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header";
+import Header from "./components/Header";
 import {Player} from "./components/Player";
 import {AddPlayerForm} from "./components/AddPlayerForm";
 
@@ -52,7 +52,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="scoreboard">
-        <Header title="My scoreboard" totalPlayers={this.state.players} />
+        <Header totalPlayers={this.state.players} />
 
         { this.state.players.map((play, index) => <Player
           id={play.id}
