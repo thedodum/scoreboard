@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Collapse, DropdownItem, DropdownMenu,
+  Collapse,
+  DropdownItem,
+  DropdownMenu,
   DropdownToggle,
   Nav,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   NavItem,
   UncontrolledDropdown
@@ -28,16 +29,17 @@ export class Menu extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md">
+          <div className="container">
           <NavLink to="/" className="navbar-brand">React</NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink to="/heroes">Heroes</NavLink>
+                <NavLink to="/heroes" className="nav-link">Heroes</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/scoreboard">Scoreboard</NavLink>
+                <NavLink to="/scoreboard" className="nav-link">Scoreboard</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -58,6 +60,7 @@ export class Menu extends React.Component {
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
+          </div>
         </Navbar>
       </div>
     );
