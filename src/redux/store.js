@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import {ADD_PLAYER, CHANGE_SCORE, UPDATE_TITLE} from "./actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, UPDATE_TITLE} from "./actionTypes";
 
 const playerInitialState = {
   title: 'test Scoreboard',
@@ -41,6 +41,11 @@ const playerReducer = (state = playerInitialState, action) => {
         players: [
           ...state.players
         ]
+      };
+    case REMOVE_PLAYER:
+      return {
+        ...state,
+        players: state.players.filter(player => player.id !== action.id)
       };
     default:
       return state;

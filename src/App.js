@@ -1,28 +1,29 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header";
-import {Player} from "./components/Player";
+import Player from "./components/Player";
 import AddPlayerForm from "./components/AddPlayerForm";
+import {connect} from "react-redux";
 
 class App extends React.Component {
-  state = {
+  /*state = {
     players: [
       {name: 'LDK', score: 0, id: 1},
       {name: 'HONG', score: 0, id: 2},
       {name: 'KIM', score: 0, id: 3},
       {name: 'PARK', score: 0, id: 4},
     ]
-  };
+  };*/
 
-  handleRemovePlayer = (id) => {
+  /*handleRemovePlayer = (id) => {
     this.setState(prevState => {
       return {
         players: prevState.players.filter(item => item.id !== id)
       }
     })
-  };
+  };*/
 
-  handleChangeScore = (index, delta) => {
+  /*handleChangeScore = (index, delta) => {
     console.log('index: ' + index, 'delta: ' + delta);
     const players = this.state.players.map((player, idx) => {
       if (idx === index){
@@ -31,12 +32,12 @@ class App extends React.Component {
       }else{
         return player;
       }
-    });
+    });*/
 
-    this.setState({players}); //players:players 같으면 하나는 생략 가능
-  };
+    /*this.setState({players});*/ //players:players 같으면 하나는 생략 가능
+  // };
 
-  handleAddPlayer = (name) => {
+  /*handleAddPlayer = (name) => {
     this.setState(prevState => {
       let maxId = 0;
       this.state.players.forEach(item => item.id > maxId ? (maxId = item.id) : (maxId = maxId));
@@ -47,21 +48,19 @@ class App extends React.Component {
         ]
       };
     });
-  };
+  };*/
 
   render() {
     return (
       <div className="scoreboard">
-        <Header totalPlayers={this.state.players} />
+        <Header totalPlayers={this.props.players} />
 
-        { this.state.players.map((play, index) => <Player
+        { this.props.players.map((play, index) => <Player
           id={play.id}
           name={play.name}
           key={play.id}
           index={index}
           score={play.score}
-          removePlayer={this.handleRemovePlayer}
-          changeScore={this.handleChangeScore}
         />) }
 
         <AddPlayerForm />
@@ -71,4 +70,10 @@ class App extends React.Component {
 }
 // 20190309 git test2
 
-export default App;
+let mapStateToProps = (state) => {
+  return {
+    players: state.playerReducer.players
+  }
+};
+
+export default connect(mapStateToProps)(App);
