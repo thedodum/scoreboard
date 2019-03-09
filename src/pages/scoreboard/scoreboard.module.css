@@ -108,6 +108,7 @@ svg {
 }
 
 .player {
+  border-left: solid 2px #EEEEEE;
   display: flex;
   font-size: 1.2em;
   border-bottom: solid 2px #EEEEEE;
@@ -174,6 +175,7 @@ svg {
 
 .stopwatch-time {
   display: block;
+  width: 190px;
   font-family: monospace;
   font-size: 2.15em;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import './Heroes.module.scss';
+import {Route, Switch} from "react-router-dom";
+import {Hero} from "./Hero";
 
 export class Heroes extends React.Component {
   constructor(props) { //case1
@@ -13,25 +15,39 @@ export class Heroes extends React.Component {
 
   render() {
     return (
-      <ul className="img-box">
-        {
-          this.state.heroes.map(hero => {
-            return (
-              <li key={hero.hero_id} className="row align-items-center m-0">
-                <div className="col-1 py-2">
-                  <img
-                    src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
-                    alt={hero.name}
-                    className="img-fluid rounded-circle" />
-                </div>
-                <span className="col">{hero.name}</span>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <>
+        <Switch>
+          <Route path="/heroes/hero/:hero_id" component={Hero}></Route>
+        </Switch>
+
+        <hr className="my-5" />
+
+        <div className="card-columns">
+          {this.state.heroes.map(hero => (
+            <div className="card"
+                 key={hero.hero_id}
+                 style={{cursor: 'pointer'}}
+                 onClick={(e) => this.handleClick(e, hero.hero_id)}>
+              <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
+                   style={{width: '100%'}} alt={hero.name}></img>
+              <div className="card-body">
+                <h5 className="card-title">{hero.name}</h5>
+                <p className="card-text">email: {hero.email}</p>
+                <p className="card-text">sex: {hero.sex}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
+
+  handleClick = (event, hero_id) => {
+    console.log(event, hero_id);
+    event.preventDefault();
+    this.props.history.push(`/heroes/hero/${hero_id}`);
+    //동적 url `/heroes/hero/${hero_id}`
+  };
 
   componentDidMount() {
     this.getHeroes();
@@ -42,4 +58,6 @@ export class Heroes extends React.Component {
     this.setState({heroes: response.data});
     console.log(response);
   }
+
+
 }
