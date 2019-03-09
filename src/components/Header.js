@@ -1,5 +1,5 @@
 import React from 'react';
-import {Stats} from "./Stats";
+import Stats from "./Stats";
 import {Stopwatch} from "./Stopwatch";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
@@ -26,6 +26,7 @@ Header.propTypes = {
   title: 'ScoreBoard'
 };*/
 
+// subscribe 가입
 let mapStateToProps = (state) => {
   return {
     title: state.playerReducer.title

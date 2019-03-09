@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {Header} from "./Header";
+import {addPlayer} from "../redux/actions";
 
 export class AddPlayerForm extends React.Component {
   // Dom에 접근하기 위한 참조값 (public thrtjd)
@@ -6,7 +9,6 @@ export class AddPlayerForm extends React.Component {
 
   constructor(props) {
     super(props);
-
   };
 
   handleValueChange = (e) => {
@@ -33,3 +35,9 @@ export class AddPlayerForm extends React.Component {
     );
   };
 }
+
+
+// 하이오더 컴포넌트 (커링펑션)
+// export default connect(null, {addPlayer:addPlayer})(Header);
+// 키 속성 같으면 삭제 가능
+export default connect(null, {addPlayer})(AddPlayerForm);
